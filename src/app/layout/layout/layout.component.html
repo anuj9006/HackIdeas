@@ -1,0 +1,21 @@
+<div class="container py-5">
+    <div class="row">
+        <ng-container *ngFor="let challenge of challenges">
+            <div class="col width-auto">
+                <div class="list-group-item">
+                    <h2 class="card-title">{{challenge.title}}</h2>
+                    <p class="card-text">{{challenge.description}}</p>
+                    <span class="badge bg-primary mr-2" *ngFor="let tag of challenge.tags">{{tag}}</span>
+                    <a (click)="addVote(challenge)"><span class="badge bg-primary mr-2">
+                            Upvote
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                {{challenge.votes}}
+                            </span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

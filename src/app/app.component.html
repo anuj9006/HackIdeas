@@ -1,0 +1,4 @@
+<ng-container *ngIf="!authenticated">
+  <app-login></app-login>
+</ng-container>
+<app-layout *ngIf="authenticated" [authenticated]="authenticated"></app-layout>
