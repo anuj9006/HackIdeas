@@ -3,18 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login/login.component';
-import { LayoutComponent } from './layout/layout/layout.component';
+import { LoginComponent } from './components/login/login.component';
+import { LayoutComponent } from './components/layout/layout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MainComponent } from './main/main/main.component';
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { AddChallengeFormComponent } from './forms/add-challenge/add-challenge-form/add-challenge-form.component';
+import { ChallengeListComponent } from './components/challenge-list/challenge-list.component';
+import { ChallengeComponent } from './components/challenge/challenge/challenge.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     LayoutComponent,
-    MainComponent
+    NavbarComponent,
+    AddChallengeFormComponent,
+    ChallengeListComponent,
+    ChallengeComponent
   ],
   imports: [
     BrowserModule,

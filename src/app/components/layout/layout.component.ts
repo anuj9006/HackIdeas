@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Challenge } from 'src/app/models/challenge.model';
+import { ChallengesService } from '../../services/challenges/challenges.service';
 
 @Component({
   selector: 'app-layout',
@@ -9,7 +10,7 @@ import { Challenge } from 'src/app/models/challenge.model';
 })
 export class LayoutComponent implements OnInit {
 
-  public challenges:Challenge[] = [
+  public challenges: Challenge[];/* = [
     {
       title: 'abc',
       description : 'Challenge 1',
@@ -26,22 +27,21 @@ export class LayoutComponent implements OnInit {
       votes: 0,
       usersVoted:[]
     }
-  ]
+  ]*/
 
   @Input() authenticated: boolean;
   constructor(
-    private storage: LocalStorageService
+    private storage: LocalStorageService,
+    private challengeService: ChallengesService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.subscribeChallenges();
+    this.challengeService.challengesUpdate.next();
   }
-
-  public addVote(challenge: Challenge) {
-    const objIndex = this.challenges.findIndex((cg => cg.title == challenge.title));
-    if(!this.challenges[objIndex].usersVoted.includes(this.storage.retrieve('userId'))) {
-      this.challenges[objIndex].votes +=1;
-      this.challenges[objIndex].usersVoted.push(this.storage.retrieve('userId'));
-    }    
+  private subscribeChallenges() {
+    this.challengeService.challengesUpdate.subscribe(() => {
+      this.challenges = this.challengeService.getChallenges();
+    })
   }
-
 }

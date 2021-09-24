@@ -1,0 +1,9 @@
+<div class="container py-5">
+    <div class="row">
+        <ng-container *ngFor="let challenge of challenges">
+            <div class="col">
+                <app-challenge [challenge]="challenge"></app-challenge>
+            </div>
+        </ng-container>
+    </div>
+</div>
