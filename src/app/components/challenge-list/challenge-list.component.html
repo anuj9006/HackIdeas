@@ -1,28 +1,30 @@
 <div class="container-fluid">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th #sortable (click)="sort($event)">Date</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Labels</th>
-                <th #sortable (click)="sort($event)">Votes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let challenge of challenges">
-                <th>{{ challenge.creationDate | date:"MM/dd/yy hh:mm:ss" }}</th>
-                <th>{{ challenge.title }}</th>
-                <td>{{ challenge.description }}</td>
-                <td><button *ngFor="let tag of challenge.tags" type="button" class="btn btn-primary btn-tag">{{ tag
-                        }}</button></td>
-                <td>
-                    <button (click)="addVote(challenge)" type="checkbox" class="btn btn-primary"
-                        [ngClass]="{'btn-success':challenge.usersVoted.includes(userId)}">
-                        Upvote <span class="badge">{{ challenge.votes }}</span>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th #sortable (click)="sort($event)">Date</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Labels</th>
+                    <th #sortable (click)="sort($event)">Votes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let challenge of challenges">
+                    <th>{{ challenge.creationDate | date:"MM/dd/yy hh:mm:ss" }}</th>
+                    <th>{{ challenge.title }}</th>
+                    <td>{{ challenge.description }}</td>
+                    <td><button *ngFor="let tag of challenge.tags" type="button" class="btn btn-primary btn-tag">{{ tag
+                            }}</button></td>
+                    <td>
+                        <button (click)="addVote(challenge)" type="checkbox" class="btn btn-primary"
+                            [ngClass]="{'btn-success':challenge.usersVoted.includes(userId)}">
+                            Upvote <span class="badge">{{ challenge.votes }}</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
