@@ -2,8 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocalStorageService } from 'ngx-webstorage';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
-
-const ids = ['123', '456', '789'];
+import { RestService } from 'src/app/services/rest/rest.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
-    private storage:LocalStorageService
+    private storage:LocalStorageService,
+    private restService: RestService
   ) { } 
   
   ngOnInit(): void {
@@ -32,13 +32,15 @@ export class LoginComponent implements OnInit {
   }
 
   public login() {
-    if (ids.includes(this.loginForm.controls.employeeId.value)) {
+    this.restService.post('/login',{ userId: this.loginForm.controls.employeeId.value }).subscribe(data => {
       this.errorMessage = '';
       this.authenticationService.authenticated.next(true);
       this.storage.store('userId', this.loginForm.controls.employeeId.value)
-    } else {
-      this.errorMessage = 'Invalid Employee Id'
+      console.log(data);
+    }, error => {
+      this.errorMessage = error.error.message;
       this.authenticationService.authenticated.next(false);
-    }
+      console.log(error);
+    });
   }
 }

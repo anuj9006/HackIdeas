@@ -13,6 +13,7 @@ import { ChallengesService } from 'src/app/services/challenges/challenges.servic
 })
 export class AddChallengeFormComponent implements OnInit {
   public addChallengeForm: FormGroup;
+  public errorMessage = '';
   public checked: boolean = false;
   public tags = ['abc', 'sfe', 'rgre', 'geg2wf', 'gwewg', 'ggwefwgqeeg', 'gretgv324', 'gwewrv48', 'gwegw4324'];
   public selectedTags :Array<string> = [];
@@ -38,6 +39,8 @@ export class AddChallengeFormComponent implements OnInit {
         usersVoted: [ this.storage.retrieve('userId') ]
       }
       this.challengesService.addChallenge(challenge);      
+    } else {
+      this.errorMessage = 'Please fill all the details';
     }
   }
 

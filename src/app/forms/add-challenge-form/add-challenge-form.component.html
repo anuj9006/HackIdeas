@@ -7,16 +7,23 @@
     </button>
 </div>
 <div class="modal-body">
+    <span class="text-danger">{{ errorMessage }}</span>
     <form [formGroup]="addChallengeForm" (ngSubmit)="addChallenge()">
         <div class="form-group">
             <label for="title">Title:</label>
             <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title"
-                formControlName="title">
+                formControlName="title" required>
+            <span class="text-danger">
+                {{ addChallengeForm.controls.title.touched &&  addChallengeForm.controls.title.errors ? 'Title is required' : '' }}
+            </span>
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
             <input type="text" class="form-control" id="description" name="description"
-                placeholder="Enter description..." formControlName="description">
+                placeholder="Enter description..." formControlName="description" required>
+            <span class="text-danger">
+                {{ addChallengeForm.controls.description.touched && addChallengeForm.controls.description.errors ? 'Description is required' : '' }}
+            </span>
         </div>
         <div class="form-group">
             <label for="description">Tags:</label>
