@@ -11,6 +11,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AddChallengeFormComponent } from './forms/add-challenge/add-challenge-form/add-challenge-form.component';
 import { ChallengeListComponent } from './components/challenge-list/challenge-list.component';
 import { ChallengeComponent } from './components/challenge/challenge/challenge.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ChallengeComponent } from './components/challenge/challenge/challenge.c
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxWebstorageModule.forRoot()
+    NgxWebstorageModule.forRoot(),
+    HttpClientModule
   ],
   providers: [
     SessionStorageService

@@ -8,7 +8,7 @@ import { Challenge } from 'src/app/models/challenge.model';
   styleUrls: ['./challenge-list.component.css']
 })
 export class ChallengeListComponent implements OnInit {
-  @Input() challenges: Challenge[];
+  @Input() challenges: any;
   constructor(
     private storage: LocalStorageService
   ) { }
