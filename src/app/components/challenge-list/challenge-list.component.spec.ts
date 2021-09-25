@@ -1,4 +1,7 @@
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { LocalStorageService } from 'ngx-webstorage';
+import { LocalStorageStub } from 'src/app/stubs/local-storage.service.stub';
 
 import { ChallengeListComponent } from './challenge-list.component';
 
@@ -6,9 +9,21 @@ describe('ChallengeListComponent', () => {
   let component: ChallengeListComponent;
   let fixture: ComponentFixture<ChallengeListComponent>;
 
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChallengeListComponent ]
+      declarations: [ ChallengeListComponent ],
+      providers: [
+        {
+          provide: HttpClient,
+          deps: [],
+          useFactory:
+            (handler: HttpHandler) => {
+              return new HttpClient(handler);
+            }
+        },
+        { provide: LocalStorageService, useClass: LocalStorageStub }
+      ]
     })
     .compileComponents();
   });

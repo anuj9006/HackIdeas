@@ -1,4 +1,7 @@
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
+import { LocalStorageService } from 'ngx-webstorage';
 
 import { LoginComponent } from './login.component';
 
@@ -8,7 +11,16 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
+      declarations: [ LoginComponent ],
+      providers: [ 
+        {
+          provide: HttpClient,
+          deps: [],
+          useFactory:
+            (handler: HttpHandler) => {
+              return new HttpClient(handler);
+            }
+        }, FormBuilder, LocalStorageService ]
     })
     .compileComponents();
   });

@@ -1,4 +1,10 @@
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LocalStorageService } from 'ngx-webstorage';
+import { LocalStorageStub } from 'src/app/stubs/local-storage.service.stub';
+import { ChallengeListComponent } from '../challenge-list/challenge-list.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 import { LayoutComponent } from './layout.component';
 
@@ -8,7 +14,11 @@ describe('LayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LayoutComponent ]
+      imports: [NgbModule],
+      declarations: [ LayoutComponent, NavbarComponent, ChallengeListComponent ],
+      providers: [ HttpClient, HttpHandler,
+        { provide: LocalStorageService, useClass: LocalStorageStub }
+      ]
     })
     .compileComponents();
   });
@@ -16,7 +26,8 @@ describe('LayoutComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LayoutComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    component.ngOnInit();
+    fixture.detectChanges();    
   });
 
   it('should create', () => {
