@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h2 tid="title" class="h3 modal-title" id="modalHeading">
+        Add Challenge
+    </h2>
+    <button type="button" tid="close" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="addChallengeForm" (ngSubmit)="addChallenge()">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title"
+                formControlName="title">
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="text" class="form-control" id="description" name="description"
+                placeholder="Enter description..." formControlName="description">
+        </div>
+        <div class="form-group">
+            <label for="description">Tags:</label>
+            <td class="border">
+                <div class="btn-group-toggle" data-toggle="buttons">
+                    <label *ngFor="let tag of tags" class="btn btn-info btn-tag">
+                        <input type="checkbox" (click)="addTag($event)" autocomplete="off"> {{ tag }}
+                    </label>
+                </div>
+            </td>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+</div>

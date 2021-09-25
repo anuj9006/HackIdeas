@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+.btn-tag {
+    line-height: 0.4;
+    font-size: 11px;
+    margin-right: 3px;
+}

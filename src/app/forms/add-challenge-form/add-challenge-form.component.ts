@@ -5,6 +5,7 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { Challenge } from 'src/app/models/challenge.model';
 import { ChallengesService } from 'src/app/services/challenges/challenges.service';
 
+
 @Component({
   selector: 'app-add-challenge-form',
   templateUrl: './add-challenge-form.component.html',
@@ -12,6 +13,9 @@ import { ChallengesService } from 'src/app/services/challenges/challenges.servic
 })
 export class AddChallengeFormComponent implements OnInit {
   public addChallengeForm: FormGroup;
+  public checked: boolean = false;
+  public tags = ['abc', 'sfe', 'rgre', 'geg2wf', 'gwewg', 'ggwefwgqeeg', 'gretgv324', 'gwewrv48', 'gwegw4324'];
+  public selectedTags :Array<string> = [];
   constructor(
     public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
@@ -28,7 +32,7 @@ export class AddChallengeFormComponent implements OnInit {
       const challenge: Challenge = {
         title: this.addChallengeForm.controls.title.value,
         description: this.addChallengeForm.controls.description.value,
-        tags: ['abc', 'xyz'],
+        tags: this.selectedTags,
         creationDate: new Date(Date.now()),
         votes: 0,
         usersVoted: [ this.storage.retrieve('userId') ]
@@ -43,4 +47,11 @@ export class AddChallengeFormComponent implements OnInit {
       description: ['', Validators.required]
     });
   }
+
+  public addTag(event:any) {
+    const tag = event.target.parentElement.innerText;
+    !this.selectedTags.includes(tag) ? 
+    this.selectedTags.push(tag) :
+      this.selectedTags = this.selectedTags.filter(e => e !== tag);
+    }
 }

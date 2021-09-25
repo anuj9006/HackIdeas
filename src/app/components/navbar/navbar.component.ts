@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { LocalStorageService } from 'ngx-webstorage';
-import { AddChallengeFormComponent } from 'src/app/forms/add-challenge/add-challenge-form/add-challenge-form.component';
+import { AddChallengeFormComponent } from 'src/app/forms/add-challenge-form/add-challenge-form.component';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({

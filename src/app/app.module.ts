@@ -8,9 +8,8 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxWebstorageModule, SessionStorageService } from 'ngx-webstorage';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { AddChallengeFormComponent } from './forms/add-challenge/add-challenge-form/add-challenge-form.component';
+import { AddChallengeFormComponent } from './forms/add-challenge-form/add-challenge-form.component';
 import { ChallengeListComponent } from './components/challenge-list/challenge-list.component';
-import { ChallengeComponent } from './components/challenge/challenge/challenge.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -20,8 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutComponent,
     NavbarComponent,
     AddChallengeFormComponent,
-    ChallengeListComponent,
-    ChallengeComponent
+    ChallengeListComponent
   ],
   imports: [
     BrowserModule,

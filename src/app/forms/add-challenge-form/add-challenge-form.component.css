@@ -1,0 +1,10 @@
+.focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.btn-info.active {
+    color: #fff !important;
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
