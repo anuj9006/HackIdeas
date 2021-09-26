@@ -9,7 +9,7 @@ import { ChallengesService } from 'src/app/services/challenges/challenges.servic
 @Component({
   selector: 'app-add-challenge-form',
   templateUrl: './add-challenge-form.component.html',
-  styleUrls: ['./add-challenge-form.component.css']
+  styleUrls: ['./add-challenge-form.component.scss']
 })
 export class AddChallengeFormComponent implements OnInit {
   public addChallengeForm: FormGroup;
