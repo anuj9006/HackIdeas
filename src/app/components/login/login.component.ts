@@ -35,12 +35,11 @@ export class LoginComponent implements OnInit {
     this.restService.post('/login',{ userId: this.loginForm.controls.employeeId.value }).subscribe(data => {
       this.errorMessage = '';
       this.authenticationService.authenticated.next(true);
-      this.storage.store('userId', this.loginForm.controls.employeeId.value)
-      console.log(data);
+      this.storage.store('userId', this.loginForm.controls.employeeId.value);
     }, error => {
       this.errorMessage = error.error.message;
       this.authenticationService.authenticated.next(false);
-      console.log(error);
+      this.loginForm.reset();
     });
   }
 }

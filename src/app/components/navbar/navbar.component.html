@@ -1,5 +1,13 @@
 <nav class="navbar navbar-dark bg-dark sticky-top">
-  <a class="navbar-brand" href="#">Hack Ideas</a>
-  <button class="btn btn-outline-success" (click)="addChallenge()">Add Challenge</button>
-  <button (click)="logout()" class="btn btn-outline-danger">Logout</button>
+  <div class="container-fluid row">
+    <div class="col">
+      <a class="navbar-brand" href="#">Hack Ideas</a>
+    </div>
+    <div class="col">
+      <button class="btn btn-outline-success" (click)="addChallenge()">Add Challenge</button>
+    </div>
+    <div class="col">
+      <button (click)="logout()" class="btn float-right btn-outline-danger">Logout</button>
+    </div>
+  </div>
 </nav>

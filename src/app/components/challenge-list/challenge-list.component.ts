@@ -25,18 +25,20 @@ export class ChallengeListComponent implements OnInit {
     this.challengesService.addVote(challenge);
   }
   public sort(event: any) {
-    this.resetSortables(event);
-    if (event.target.getAttribute('class') !== 'asc') {
-      event.srcElement.setAttribute('class', 'asc');
-      this.sortChallengesAscending(event);
-    } else if (event.target.attributes['class']?.value === 'asc') {
-      event.srcElement.setAttribute('class', 'desc');
-      this.sortChallengesDescending(event);
+    if (this.challenges.length > 1) {
+      this.resetSortables(event);
+      if (event.target.getAttribute('class') !== 'asc') {
+        event.srcElement.setAttribute('class', 'asc');
+        this.sortChallengesAscending(event);
+      } else if (event.target.attributes['class']?.value === 'asc') {
+        event.srcElement.setAttribute('class', 'desc');
+        this.sortChallengesDescending(event);
+      }
     }
   }
-  public resetSortables(event:any) {
-    this.sortables.forEach((element:any) => {
-      event.target !== element.nativeElement ? element.nativeElement.setAttribute('class','') : '';
+  public resetSortables(event: any) {
+    this.sortables.forEach((element: any) => {
+      event.target !== element.nativeElement ? element.nativeElement.setAttribute('class', '') : '';
     })
   }
   public sortChallengesAscending(event: any) {

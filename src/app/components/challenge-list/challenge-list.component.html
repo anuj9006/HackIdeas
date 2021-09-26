@@ -1,5 +1,5 @@
-<div class="container-fluid">
-    <div class="table-responsive">
+<div class="container">
+    <div class="table-fixed">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -18,7 +18,7 @@
                     <td><button *ngFor="let tag of challenge.tags" type="button" class="btn btn-primary btn-tag">{{ tag
                             }}</button></td>
                     <td>
-                        <button (click)="addVote(challenge)" type="checkbox" class="btn btn-primary"
+                        <button (click)="addVote(challenge)" type="checkbox" class="btn btn-sm btn-primary"
                             [ngClass]="{'btn-success':challenge.usersVoted.includes(userId)}">
                             Upvote <span class="badge">{{ challenge.votes }}</span>
                         </button>
