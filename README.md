@@ -9,9 +9,9 @@ Run `npm install`
 Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Docker start
-Run `docker build -t hackideas-docker . `
+Run `docker build -t hackideas-docker . ` . This will be build the docker image with App.
 
-Run `docker run -p 3000:3000 -d hackideas-docker`
+Run `docker run -p 3000:3000 -d hackideas-docker` . This will start container for above built image.
 Navigate to `http://localhost:3000/`
 
 ## Running unit tests
