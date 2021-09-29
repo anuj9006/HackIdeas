@@ -1,7 +1,7 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { LocalStorageService } from 'ngx-webstorage';
+import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 
 import { RestService } from './rest.service';
 
@@ -19,7 +19,7 @@ describe('RestService', () => {
             (handler: HttpHandler) => {
               return new HttpClient(handler);
             }
-        }, LocalStorageService, NgbActiveModal
+        }, LocalStorageService, NgbActiveModal, SessionStorageService
       ]
     });
   })().then(done).catch(done.fail));

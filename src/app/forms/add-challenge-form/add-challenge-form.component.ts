@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { LocalStorageService } from 'ngx-webstorage';
+import { SessionStorageService } from 'ngx-webstorage';
 import { Challenge } from 'src/app/models/challenge.model';
 import { ChallengesService } from 'src/app/services/challenges/challenges.service';
 
@@ -15,12 +15,12 @@ export class AddChallengeFormComponent implements OnInit {
   public addChallengeForm: FormGroup;
   public errorMessage = '';
   public checked: boolean = false;
-  public tags = ['abc', 'sfe', 'rgre', 'geg2wf', 'gwewg', 'ggwefwgqeeg', 'gretgv324', 'gwewrv48', 'gwegw4324'];
+  public tags = ['Feature', 'Tech', 'Movie', 'Music', 'Art', 'Dance', 'Machine', 'Dance', 'Mall', 'Photo', 'Sport'];
   public selectedTags :Array<string> = [];
   constructor(
     public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
-    private storage: LocalStorageService,
+    private storage: SessionStorageService,
     private challengesService: ChallengesService
   ) { }
 
@@ -30,13 +30,14 @@ export class AddChallengeFormComponent implements OnInit {
   public addChallenge() {
     if (this.addChallengeForm.status === "VALID") {
       this.activeModal.close();
+      let userid:any = sessionStorage.getItem('userId');
       const challenge: Challenge = {
         title: this.addChallengeForm.controls.title.value,
         description: this.addChallengeForm.controls.description.value,
         tags: this.selectedTags,
         creationDate: new Date(Date.now()),
         votes: 0,
-        usersVoted: [ this.storage.retrieve('userId') ]
+        usersVoted: [userid]
       }
       this.challengesService.addChallenge(challenge);      
     } else {

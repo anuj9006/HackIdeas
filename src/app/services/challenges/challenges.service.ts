@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { LocalStorageService } from 'ngx-webstorage';
 import { Model, ModelFactory } from '@angular-extensions/model';
 import { Observable, Subject } from 'rxjs';
 import { Challenge } from 'src/app/models/challenge.model';
@@ -14,7 +13,6 @@ export class ChallengesService {
   public challengesList$: Observable<Challenge[]>;
   constructor(
     private restService: RestService,
-    private storage: LocalStorageService,
     private modelFactory: ModelFactory<Array<Challenge>>,
   ) {
     this.model = this.modelFactory.create([]);
@@ -30,7 +28,6 @@ export class ChallengesService {
   }
 
   public getChallenges() {
-    //const challenges:Challenge[] = this.storage.retrieve('challenges') ? this.storage.retrieve('challenges') : [];
     this.restService.getRest('/challenges').subscribe((data: any) => {
       this.model.set(data);
     }, (error) => {

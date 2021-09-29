@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { LocalStorageService } from 'ngx-webstorage';
 import { AddChallengeFormComponent } from 'src/app/forms/add-challenge-form/add-challenge-form.component';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
@@ -13,7 +12,6 @@ export class NavbarComponent implements OnInit {
   private modalRef: NgbModalRef;
   constructor(
     private authenticationService: AuthenticationService,
-    private storage: LocalStorageService,
     private modalService: NgbModal    
   ) { }
 
@@ -21,7 +19,7 @@ export class NavbarComponent implements OnInit {
   }
 
   public logout() {
-    this.storage.clear('userId');
+    sessionStorage.clear();
     this.authenticationService.authenticated.next(false);
   }
 

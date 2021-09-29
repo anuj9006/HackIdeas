@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LocalStorageService } from 'ngx-webstorage';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { RestService } from 'src/app/services/rest/rest.service';
 
@@ -17,7 +16,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
-    private storage:LocalStorageService,
     private restService: RestService
   ) { } 
   
@@ -35,7 +33,8 @@ export class LoginComponent implements OnInit {
     this.restService.post('/login',{ userId: this.loginForm.controls.employeeId.value }).subscribe(data => {
       this.errorMessage = '';
       this.authenticationService.authenticated.next(true);
-      this.storage.store('userId', this.loginForm.controls.employeeId.value);
+      sessionStorage.setItem('userId', this.loginForm.controls.employeeId.value);
+      sessionStorage.setItem('token', 'Bearer ' + data.token);
     }, error => {
       this.errorMessage = error.error.message;
       this.authenticationService.authenticated.next(false);

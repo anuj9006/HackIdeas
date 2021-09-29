@@ -1,13 +1,13 @@
-<div class="container">
+<div class="container-fluid">
     <div class="table-fixed">
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th #sortable (click)="sort($event)">Date</th>
+                <tr class="pl-1">
+                    <th #sortable (click)="sort($event)" role="button">Date</th>
                     <th>Title</th>
                     <th>Description</th>
                     <th>Labels</th>
-                    <th #sortable (click)="sort($event)">Votes</th>
+                    <th #sortable (click)="sort($event)" role="button">Votes</th>
                 </tr>
             </thead>
             <tbody>
@@ -15,7 +15,7 @@
                     <th>{{ challenge.creationDate | date:"MM/dd/yy hh:mm:ss" }}</th>
                     <th>{{ challenge.title }}</th>
                     <td>{{ challenge.description }}</td>
-                    <td><button *ngFor="let tag of challenge.tags" type="button" class="btn btn-primary btn-tag">{{ tag
+                    <td class="overflow-auto"><button *ngFor="let tag of challenge.tags" type="button" class="btn btn-primary btn-tag">{{ tag
                             }}</button></td>
                     <td>
                         <button (click)="addVote(challenge)" type="checkbox" class="btn btn-sm btn-primary"

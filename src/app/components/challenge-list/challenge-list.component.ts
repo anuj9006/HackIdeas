@@ -1,5 +1,4 @@
 import { Component, Directive, ElementRef, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { LocalStorageService } from 'ngx-webstorage';
 import { Challenge } from 'src/app/models/challenge.model';
 import { ChallengesService } from 'src/app/services/challenges/challenges.service';
 
@@ -12,9 +11,8 @@ export class ChallengeListComponent implements OnInit {
   @Input() challenges: any;
   @ViewChildren('sortable') sortables!: QueryList<HTMLInputElement>;
 
-  public userId = this.storage.retrieve('userId');
+  public userId = sessionStorage.getItem('userId');
   constructor(
-    private storage: LocalStorageService,
     private challengesService: ChallengesService
   ) { }
 
