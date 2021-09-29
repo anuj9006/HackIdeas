@@ -9,7 +9,9 @@ const key = '6a53f73899b6dd1660250db02fce037388a513321a41ad5804be4091e89d0e5c41e
 var challenges = []
 app.use(express.json());
 
-//app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:4200'
+}));
 
 app.get('*.*', express.static(_app_folder, {maxAge: '1y'}));
 
